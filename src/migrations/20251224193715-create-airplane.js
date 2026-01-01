@@ -10,10 +10,12 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       Model: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
+        allowNull:true
       },
       Capacity: {
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+        defaultValue:0
       },
       createdAt: {
         allowNull: false,
