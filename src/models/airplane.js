@@ -5,7 +5,7 @@ const {
 module.exports = (sequelize, DataTypes) => {
   class Airplane extends Model {
     /**
-     * Helper method for defining associations.
+     *  method for defining aHelperssociations.
      * This method is not a part of Sequelize lifecycle.
      * The `models/index` file will call this method automatically.
      */
@@ -20,7 +20,7 @@ module.exports = (sequelize, DataTypes) => {
     },
     Capacity: {
       type: DataTypes.INTEGER,
-      allowNull: false
+      allowNull: true
     }
   }, {
     sequelize,
