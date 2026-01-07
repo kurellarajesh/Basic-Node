@@ -5,7 +5,6 @@ const AppError = require('../utils/errors/app-error');
 
 async function createAirplane(req, res) {
   try {
-
     const airplane = await AirplaneService.createAirplane({
       Model : req.body.Model,
       Capacity : req.body.Capacity
@@ -17,6 +16,18 @@ async function createAirplane(req, res) {
   }
 }
 
+async function getAirplanes(req, res) {
+  try{
+    const airplanes = await AirplaneService.getAirplanes();
+    SuccessResponse.data = airplanes;
+    return res.status(StatusCodes.OK).json(new SuccessResponse('Airplanes fetched successfully', airplanes));
+  }
+  catch(error){
+    return res.status(error.statusCode).json(new ErrorResponse('Failed to fetch Airplanes', new AppError('Failed to fetch Airplanes', error.statusCode)));
+  }
+}
+
 module.exports = {
-  createAirplane
+  createAirplane,
+  getAirplanes
 };

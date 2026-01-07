@@ -14,6 +14,17 @@ async function createAirplane(data) {
     }
 }
 
+async function getAirplanes() {
+    try {
+        const airplaneRepository = new AirplaneRepository();
+        const airplanes = await airplaneRepository.getAll();
+        return airplanes;
+    } catch (error) {
+            throw new AppError('Cannot get the airplane object', StatusCodes.INTERNAL_SERVER_ERROR);
+    }
+}
+
 module.exports = {
-    createAirplane
+    createAirplane,
+    getAirplanes
 }
