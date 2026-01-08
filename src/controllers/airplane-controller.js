@@ -39,8 +39,47 @@ async function getAirplane(req, res) {
   }
 }
 
+async function destroyAirplane(req, res) {
+  try {
+    const response = await AirplaneService.destroyAirplane(req.params.id);
+    SuccessResponse.data = response;
+    return res.status(StatusCodes.OK).json(new SuccessResponse('Airplane deleted successfully', response));
+  }
+  catch(error) {
+    const statusCode = error.statusCode || StatusCodes.INTERNAL_SERVER_ERROR;
+    return res.status(statusCode).json(new ErrorResponse(error.message, error));
+  }
+}
+
+async function patchAirplane(req, res) {
+  try {
+    const airplane = await AirplaneService.patchAirplane(req.params.id, req.body);
+    SuccessResponse.data = airplane;
+    return res.status(StatusCodes.OK).json(new SuccessResponse('Airplane updated successfully', airplane));
+  }
+  catch(error) {
+    const statusCode = error.statusCode || StatusCodes.INTERNAL_SERVER_ERROR;
+    return res.status(statusCode).json(new ErrorResponse(error.message, error));
+  }
+}
+
+async function updateAirplane(req, res) {
+  try {
+    const airplane = await AirplaneService.updateAirplane(req.params.id, req.body);
+    SuccessResponse.data = airplane;
+    return res.status(StatusCodes.OK).json(new SuccessResponse('Airplane updated successfully', airplane));
+  }
+  catch(error) {
+    const statusCode = error.statusCode || StatusCodes.INTERNAL_SERVER_ERROR;
+    return res.status(statusCode).json(new ErrorResponse(error.message, error));
+  }
+}
+
 module.exports = {
   createAirplane,
   getAirplanes,
-  getAirplane
+  getAirplane,
+  destroyAirplane,
+  patchAirplane,
+  updateAirplane
 };
